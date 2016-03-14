@@ -9,10 +9,25 @@
 
 
 //Add overlay
+var $overlay = $("<div id='overlay'></div>");
+$("body").append($overlay);
 
+var $image = $("<img>");
+$overlay.append($image);
+
+var $caption = $("<p></p>");
+$overlay.append($caption);
 
 //Capture the click event on a link to an image
-
+$("#imageGallery a").click(function(event){
+    event.preventDefault();
+    var imageLocation = $(this).attr("href");
+    $image.attr("src",imageLocation);
+    var captionText = $(this).attr("alt");
+    $caption.attr("text", captionText);
+    console.log(imageLocation);
+    $overlay.show();
+});
   //Update overlay with the image linked in the link
 
   
@@ -25,7 +40,9 @@
 //When overlay is clicked
 
   //Hide the overlay
-
+$overlay.click(function(){
+    $(this).hide();
+});
 
 
 
